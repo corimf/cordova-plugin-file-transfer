@@ -1,0 +1,7 @@
+CVE-2014-0072 Security patch for iOS File Transfer
+
+- Cordova RTC work item number: 38661
+- Apache Cordova Jira issue: none
+- Markmail or Google Group reference: none
+- Product PMR: none
+- cherry-pick a1d6fc07e8a40c1b2b16f4103c403b30e1089668 security patch to this branch
