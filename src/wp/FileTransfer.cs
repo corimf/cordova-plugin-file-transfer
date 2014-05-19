@@ -389,6 +389,15 @@ namespace WPCordovaClassLib.Cordova.Commands
                 {
                     using (IsolatedStorageFile isoFile = IsolatedStorageFile.GetUserStoreForApplication())
                     {
+                        string cleanUrl = downloadOptions.Url.Replace("x-wmapp0:", "").Replace("file:", "");
+
+                        //pre-emptively create any directories in the FilePath that do not exist
+                        string directoryName = getDirectoryName(downloadOptions.FilePath);
+                        if(!string.IsNullOrEmpty(directoryName) && !isoFile.DirectoryExists(directoryName))
+                        {
+                            isoFile.CreateDirectory(directoryName);
+                        }
+
                         // just copy from one area of iso-store to another ...
                         if (isoFile.FileExists(downloadOptions.Url))
                         {
@@ -397,7 +406,6 @@ namespace WPCordovaClassLib.Cordova.Commands
                         else
                         {
                             // need to unpack resource from the dll
-                            string cleanUrl = downloadOptions.Url.Replace("x-wmapp0:", "").Replace("file:", "");
                             Uri uri = new Uri(cleanUrl, UriKind.Relative);
                             var resource = Application.GetResourceStream(uri);
 
@@ -579,6 +587,13 @@ namespace WPCordovaClassLib.Cordova.Commands
 
                 using (IsolatedStorageFile isoFile = IsolatedStorageFile.GetUserStoreForApplication())
                 {
+                    // create any directories in the path that do not exist
+                    string directoryName = getDirectoryName(reqState.options.FilePath);
+                    if (!string.IsNullOrEmpty(directoryName) && !isoFile.DirectoryExists(directoryName))
+                    {
+                        isoFile.CreateDirectory(directoryName);
+                    }
+
                     // create the file if not exists
                     if (!isoFile.FileExists(reqState.options.FilePath))
                     {
@@ -859,6 +874,21 @@ namespace WPCordovaClassLib.Cordova.Commands
                 DispatchCommandResult(new PluginResult(PluginResult.Status.ERROR, transferError), reqState.options.CallbackId);
 
             }
+        }
+
+        // Gets the full path without the filename
+        private string getDirectoryName(string filePath)
+        {
+            string directoryName;
+            try
+            {
+                directoryName = filePath.Substring(0, filePath.LastIndexOf('/'));
+            }
+            catch
+            {
+                directoryName = "";
+            }
+            return directoryName;
         }
     }
 }
