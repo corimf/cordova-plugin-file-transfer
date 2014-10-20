@@ -1,0 +1,4 @@
+Merge r0.4.7 into 3.6.1esr
+
+- Related to Cordova RTC item: Story 50690
+- Full description: It was found through testing that the number of failing windows 8.0 tests could be drastically reduced by updating the file and file-transfer plugins to a later release. This merge updates the file-transfer plugin from release 0.4.5 to 0.4.7
