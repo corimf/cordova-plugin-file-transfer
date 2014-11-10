@@ -601,7 +601,7 @@ static CFIndex WriteDataToStream(NSData* data, CFWriteStreamRef stream)
     if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
         NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
 
-        self.responseCode = [httpResponse statusCode];
+        self.responseCode = (int)[httpResponse statusCode];
         self.bytesExpected = [response expectedContentLength];
         if ((self.direction == CDV_TRANSFER_DOWNLOAD) && (self.responseCode == 200) && (self.bytesExpected == NSURLResponseUnknownLength)) {
             // Kick off HEAD request to server to get real length
