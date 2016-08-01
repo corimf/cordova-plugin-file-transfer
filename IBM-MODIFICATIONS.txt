@@ -1,3 +1,12 @@
+Fix failing mobilespec test
+- Cordova RTC work item number: 106363
+- Apache Cordova Jira issue: 
+- Markmail or Google Group reference:
+- Product PMR: APAR PI61332 (RTC 106363)
+- Cherry-pick: ea271933e933361312be9af36f1e2244099be0d8
+- Full description: For Android, there are failing file-transfer tests in mobilespec. 
+The crash happens on Lollipop and later. Adding a try/catch fixes the issue. 
+
 Patch security vulnerabilty for headers accepting non-ASCII text
 
 - Apache Cordova Jira issue: https://issues.apache.org/jira/browse/CB-9562
