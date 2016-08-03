@@ -25,8 +25,8 @@ exports.defineAutoTests = function () {
 
     describe('FileTransfer', function () {
         // https://github.com/apache/cordova-labs/tree/cordova-filetransfer
-        var server = "http://cordova-filetransfer.jitsu.com";
-        var server_with_credentials = "http://cordova_user:cordova_password@cordova-filetransfer.jitsu.com";
+        var server = "http://cordova-vm.apache.org:5000";
+        var server_with_credentials = "http://cordova_user:cordova_password@cordova-vm.apache.org:5000";
 
         beforeEach(function () {
             jasmine.Expectation.addMatchers({
